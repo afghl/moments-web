@@ -1,0 +1,30 @@
+body {
+}
+
+header {
+  width: 100%;
+  height: 56px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid black;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+
+.main-logo {
+  font-family: 'Arima Madurai', cursive;
+  font-size: 35px;
+  color: white;
+  float: left;
+  display: block;
+  height: 56px;
+  line-height: 58px;
+  margin-left: 40px;
+  -webkit-transition: opacity 0.2s ease;
+  -moz-transition: opacity 0.2s ease;
+  -ms-transition: opacity 1s ease;
+  -o-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  &:hover {
+    opacity: 0.5;
+  }
+}
