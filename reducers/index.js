@@ -1,9 +1,8 @@
+import pagination from './pagination'
+import entities from './entities'
 import { combineReducers } from 'redux'
 
-const test = (state = {}, action) => {
-  return state
-}
-
 export default combineReducers({
-  test
+  pagination,
+  entities
 })

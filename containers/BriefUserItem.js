@@ -19,7 +19,9 @@ class BriefUserItem extends Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  {  }
-)(BriefUserItem)
+// export default connect(
+//   mapStateToProps,
+//   {  }
+// )(BriefUserItem)
+
+export default BriefUserItem
