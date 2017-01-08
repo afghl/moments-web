@@ -1,0 +1,28 @@
+#main-section {
+  width: 980px;
+  min-height: 700px;
+  min-height: 700px;
+  margin: 0 auto;
+  position: relative;
+
+  .row {
+    width: 100%;
+  }
+  
+  .left {
+    float: left;
+    width: 66.66667%;
+  }
+
+  .right {
+    float: left;
+    width: 29.16667%;
+    margin-left: 4.16667%;
+  }
+
+  &:after {
+    content: ' ';
+    display: table;
+    clear: both;
+  }
+}

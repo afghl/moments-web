@@ -11,10 +11,11 @@ class BriefUserItem extends Component {
     const { user: { avatar, name } } = this.props
 
     return (
-      <div className="brief-user-item">
-        <span className="avater"><img src={avatar}/></span>
-        {name}
-      </div>
+      <li className="brief-user-item">
+        <div className="avatar"><img src={avatar}/></div>
+
+        <p className="name">{name}</p>
+      </li>
     )
   }
 }

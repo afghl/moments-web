@@ -1,7 +1,3 @@
-$background-white: #f9f9f9;
-$black: #484848;
-$white: rgba(255,255,255,0.85);
-
 html {
   -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -12,8 +8,8 @@ html {
 
 body {
   margin: 0;
-  color: $black;
-  background: $background-white;
+  color: #484848;
+  background-color: #fff;
   font-family: proxima-nova,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
   font-size: 14px;
 }
@@ -36,6 +32,6 @@ ol {
 }
 
 a:link, a:visited {
-  color: #3a8bbb;
+  color: #0a141a;
   text-decoration: none;
 }

@@ -10,7 +10,12 @@ export default class App extends Component {
         <Header />
         <main id={"main-section"}>
           <div className={"row"}>
-            <FollowerList />
+            <div className={"left"}>
+              s
+            </div>
+            <div className={"right"}>
+              <FollowerList />
+            </div>
           </div>
         </main>
         <Footer />
