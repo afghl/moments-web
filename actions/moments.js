@@ -21,8 +21,9 @@ function fetchMoments(params) {
 export const loadMoments = () => {
   return (dispatch, getState) => {
     const { params } = getState().pagination.moments
-
-    return dispatch(fetchMoments(params))
+    const userId = getState().page.state.selectUserId
+    
+    return dispatch(fetchMoments(merge(params, { userId })))
   }
 }
 

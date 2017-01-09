@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MomentItem from './MomentItem'
 import List from '../components/List'
-import { loadMoments } from '../actions/moments'
 import * as status from '../reducers/paginate'
 
 const mapStateToProps = (state, ownProps) => {
@@ -27,23 +26,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 class MomentList extends Component {
-  componentWillMount() {
-    if (this.shouldLoad(this.props)) {
-      this.props.loadMoments()
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.shouldLoad(nextProps))
-      this.props.loadMoments()
-  }
-
-  shouldLoad(props) {
-    const { moments, fetchStatus, failTimes } = props
-    return moments.length == 0
-            && fetchStatus == status.PENDING
-            && failTimes < 10
-  }
 
   renderMoment(m) {
     return (
@@ -70,5 +52,5 @@ class MomentList extends Component {
 
 export default connect(
   mapStateToProps,
-  { loadMoments }
+  { }
 )(MomentList)
