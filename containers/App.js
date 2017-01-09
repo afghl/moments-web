@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import FollowerList from '../containers/FollowerList'
+import MomentList from '../containers/MomentList'
 
 export default class App extends Component {
   render() {
@@ -11,7 +12,7 @@ export default class App extends Component {
         <main id={"main-section"}>
           <div className={"row"}>
             <div className={"left"}>
-              s
+              <MomentList />
             </div>
             <div className={"right"}>
               <FollowerList />

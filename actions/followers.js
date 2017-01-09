@@ -17,7 +17,7 @@ function fetchFollowers(params) {
   }
 }
 
-export function loadFollowers() {
+export const loadFollowers = () => {
   return (dispatch, getState) => {
     const { params } = getState().pagination.followers
 

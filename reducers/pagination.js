@@ -3,6 +3,7 @@ import union from 'lodash/union'
 import { combineReducers } from 'redux'
 import paginate from './paginate'
 import * as followersActions from '../actions/followers'
+import * as momentsActions from '../actions/moments'
 import * as status from './paginate'
 
 const defaultHandle = (state, action) => {
@@ -24,6 +25,17 @@ export default combineReducers({
     defaultParams: { userId: 1 },
     more: {
       [followersActions.UPDATE_SHOTS_PARAMS]: defaultHandle
+    }
+  }),
+  moments: paginate({
+    types: [
+      momentsActions.MOMENTS_REQUEST,
+      momentsActions.MOMENTS_SUCCESS,
+      momentsActions.MOMENTS_FAILURE,
+    ],
+    defaultParams: { userId: 1 },
+    more: {
+      [momentsActions.UPDATE_MOMENTS_PARAMS]: defaultHandle
     }
   }),
 })
