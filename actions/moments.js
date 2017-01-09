@@ -22,16 +22,18 @@ export const loadMoments = () => {
   return (dispatch, getState) => {
     const { params } = getState().pagination.moments
     const userId = getState().page.state.selectUserId
-    
+
     return dispatch(fetchMoments(merge(params, { userId })))
   }
 }
 
-export const updateMomentsParams = (params) => {
+export const updateMomentsParams = (params = {}) => {
   return (dispatch, getState) => {
     dispatch({
       type: UPDATE_MOMENTS_PARAMS,
       params
     })
+
+    return Promise.resolve()
   }
 }

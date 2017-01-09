@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { selectUser } from '../actions/selectUser'
-import { loadMoments } from '../actions/moments'
+import { loadMoments, updateMomentsParams } from '../actions/moments'
 
 const mapStateToProps = (state, ownProps) => {
   const { selectUserId } = state.page.state
@@ -16,9 +16,16 @@ class BriefUserItem extends Component {
   }
 
   selectItem() {
-    const { user: { id }, selectUser, loadMoments } = this.props
+    const {
+      user: { id },
+      selectUser,
+      loadMoments,
+      updateMomentsParams
+     } = this.props
 
-    selectUser(id).then(loadMoments)
+    selectUser(id)
+      .then(updateMomentsParams)
+      .then(loadMoments)
   }
 
   render() {
@@ -38,5 +45,5 @@ class BriefUserItem extends Component {
 
 export default connect(
   mapStateToProps,
-  { selectUser, loadMoments }
+  { selectUser, loadMoments, updateMomentsParams }
 )(BriefUserItem)
