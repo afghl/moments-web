@@ -14,11 +14,11 @@ export default class App extends Component {
           <div className={"row"}>
             <div className={"left"}>
               <MomentList />
-              <InputMoments />
             </div>
             <div className={"right"}>
               <FollowerList />
             </div>
+            <InputMoments />
           </div>
         </main>
         <Footer />

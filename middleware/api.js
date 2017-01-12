@@ -1,52 +1,22 @@
-import { Schema, arrayOf, normalize } from 'normalizr'
-import { camelizeKeys } from 'humps'
-import 'isomorphic-fetch'
-import forOwn from 'lodash/forOwn'
-
-const API_ROOT = 'http://localhost:9090/'
-
-const getFullUrl = (endpoint, params) => {
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
-  let paramString = ''
-
-  forOwn(params, (v, k) => { paramString += `&${k}=${v}` })
-  return `${fullUrl}?${paramString}`
-}
-
-// Fetches an API response and normalizes the result JSON according to schema.
-// This makes every API response have the same shape, regardless of how nested it was.
-function callApi(endpoint, params, schema) {
-  const fullUrl = getFullUrl(endpoint, params)
-  return fetch(fullUrl
-    ).then(response =>
-      response.json().then(json => ({ json, response }))
-    ).then(({ json, response }) => {
-      if (!response.ok) {
-        return Promise.reject(json)
-      }
-
-      const camelizedJson = camelizeKeys(json)
-      const flat = normalize(camelizedJson.items, schema)
-
-      delete camelizedJson.items
-
-      return Object.assign({}, flat, { info: camelizedJson })
-    })
-}
+import { get } from './api/get'
+import { post } from './api/post'
 
 // Action key that carries API call info interpreted by this Redux middleware.
 export const CALL_API = Symbol('Call API')
+export const GET = Symbol('Get')
+export const POST = Symbol('Post')
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
 export default store => next => action => {
   const callAPI = action[CALL_API]
+
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
   let { endpoint } = callAPI
-  const { schema, types, params } = callAPI
+  const { schema, types, params, method } = callAPI
 
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState())
@@ -55,7 +25,8 @@ export default store => next => action => {
   if (typeof endpoint !== 'string') {
     throw new Error('Specify a string endpoint URL.')
   }
-  if (!schema) {
+  // post api doesnt need schema
+  if (!schema && typeof method == GET) {
     throw new Error('Specify one of the exported Schemas.')
   }
   if (!Array.isArray(types) || types.length !== 3) {
@@ -74,8 +45,14 @@ export default store => next => action => {
   const [ requestType, successType, failureType ] = types
 
   next(actionWith({ type: requestType }))
+  if (typeof callAPI === 'undefined' && typeof callAPI === 'undefined') {
+    return next(action)
+  }
 
-  return callApi(endpoint, params, schema).then(
+  console.log(method);
+  const api = method == GET ? get : post
+
+  return api(endpoint, params, schema).then(
     response => {
       next(actionWith({
         type: successType,

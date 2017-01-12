@@ -1,4 +1,4 @@
-import { CALL_API } from '../middleware/api'
+import { CALL_API, GET } from '../middleware/api'
 import Schemas from '../schemas/index'
 
 export const FOLLOWERS_REQUEST = 'FOLLOWERS_REQUEST'
@@ -9,6 +9,7 @@ export const UPDATE_FOLLOWERS_PARAMS = 'UPDATE_FOLLOWERS_PARAMS'
 function fetchFollowers(params) {
   return {
     [CALL_API]: {
+      method: GET,
       types: [ FOLLOWERS_REQUEST, FOLLOWERS_SUCCESS, FOLLOWERS_FAILURE ],
       endpoint: 'followers',
       schema: Schemas.USER_ARRAY,

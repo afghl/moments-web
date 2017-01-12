@@ -1,4 +1,4 @@
-import { CALL_API } from '../middleware/api'
+import { CALL_API, GET } from '../middleware/api'
 import Schemas from '../schemas/index'
 import merge from 'lodash/merge'
 
@@ -10,6 +10,7 @@ export const UPDATE_MOMENTS_PARAMS = 'UPDATE_MOMENTS_PARAMS'
 function fetchMoments(params) {
   return {
     [CALL_API]: {
+      method: GET,
       types: [ MOMENTS_REQUEST, MOMENTS_SUCCESS, MOMENTS_FAILURE ],
       endpoint: `users/${params.userId}/moments`,
       schema: Schemas.MOMENT_ARRAY,
