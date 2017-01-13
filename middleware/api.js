@@ -5,6 +5,7 @@ import { post } from './api/post'
 export const CALL_API = Symbol('Call API')
 export const GET = Symbol('Get')
 export const POST = Symbol('Post')
+export const API_ROOT = 'http://localhost:9090/api/'
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
@@ -48,8 +49,7 @@ export default store => next => action => {
   if (typeof callAPI === 'undefined' && typeof callAPI === 'undefined') {
     return next(action)
   }
-
-  console.log(method);
+  
   const api = method == GET ? get : post
 
   return api(endpoint, params, schema).then(

@@ -2,21 +2,17 @@ import forOwn from 'lodash/forOwn'
 import { Schema, arrayOf, normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
+import { API_ROOT } from '../api'
 
-const API_ROOT = 'http://localhost:9090/'
-
-const getFullUrl = (endpoint) => {
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
-  return fullUrl
-}
-
-// Fetches an API response and normalizes the result JSON according to schema.
-// This makes every API response have the same shape, regardless of how nested it was.
 export function post(endpoint, params, schema) {
-  const fullUrl = getFullUrl(endpoint)
-
+  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+  console.log(JSON.stringify(params));
   return fetch(fullUrl, {
     body: JSON.stringify(params),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     method: 'POST'
   }).then(response =>
       response.json().then(json => ({ json, response }))

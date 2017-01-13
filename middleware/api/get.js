@@ -2,8 +2,8 @@ import forOwn from 'lodash/forOwn'
 import { Schema, arrayOf, normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
+import { API_ROOT } from '../api'
 
-const API_ROOT = 'http://localhost:9090/'
 
 const getFullUrl = (endpoint, params) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint

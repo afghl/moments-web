@@ -5,6 +5,15 @@ export const PENDING = 'PENDING'
 export const FETCHING = 'FETCHING'
 export const FETCHED = 'FETCHED'
 
+const handleMore = (state, action, more) => {
+  const handler = more[action.type]
+  if (typeof handler === 'function') {
+    return handler(state, action)
+  } else {
+    return state
+  }
+}
+
 // Creates a reducer managing pagination, given the action types to handle,
 // and a function telling how to extract the key from an action.
 export default ({ types, defaultParams, more }) => {
@@ -16,15 +25,6 @@ export default ({ types, defaultParams, more }) => {
   }
 
   const [ requestType, successType, failureType] = types
-
-  const handleMore = (state, action, more) => {
-    const handler = more[action.type]
-    if (!handler) {
-      return state
-    }
-
-    return handler(state, action)
-  }
 
   return (state = {
     params: defaultParams,

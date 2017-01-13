@@ -18,7 +18,7 @@ const sendMoment = (params) => {
 export const postMoment = (params) => {
   return (dispatch, getState) => {
     // TODO: find correct userId
-    const userId = 1
+    const userId = 2
     dispatch(sendMoment(merge(params, { userId })))
 
     return Promise.resolve()

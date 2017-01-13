@@ -21,7 +21,6 @@ export default class App extends Component {
             <InputMoments />
           </div>
         </main>
-        <Footer />
       </div>
     )
   }
