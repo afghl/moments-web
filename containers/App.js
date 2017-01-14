@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return { current }
 }
+
 class App extends Component {
   list() {
     const { current } = this.props

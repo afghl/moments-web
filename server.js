@@ -17,7 +17,8 @@ app.use(webpackHotMiddleware(compiler))
 
 app.use('/images', express.static('images'))
 
-app.use(function(req, res) {
+app.use('/page', function(req, res) {
+  console.log(req.query);
   res.sendFile(__dirname + '/index.html')
 })
 
