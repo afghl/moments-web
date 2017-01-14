@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postMoment } from '../actions/postMoment'
+import { updateCurrentPage } from '../actions/page'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
@@ -17,6 +18,8 @@ class InputMoments extends Component {
     if (target.charCode == 13) {
       this.props.postMoment({
         body: this.refs.text.value
+      }).then(() => {
+        updateCurrentPage('feeds')
       }).then(() => {
         this.refs.text.value = ''
       })
@@ -37,5 +40,5 @@ class InputMoments extends Component {
 
 export default connect(
   mapStateToProps,
-  { postMoment }
+  { postMoment, updateCurrentPage }
 )(InputMoments)

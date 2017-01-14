@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { selectUser } from '../actions/selectUser'
+import { selectUser } from '../actions/page'
 import { loadMoments, updateMomentsParams } from '../actions/moments'
+import { updateCurrentPage } from '../actions/page'
 
 const mapStateToProps = (state, ownProps) => {
   const { selectUserId } = state.page.state
@@ -20,12 +21,14 @@ class BriefUserItem extends Component {
       user: { id },
       selectUser,
       loadMoments,
-      updateMomentsParams
+      updateMomentsParams,
+      updateCurrentPage
      } = this.props
 
     selectUser(id)
       .then(updateMomentsParams)
       .then(loadMoments)
+      .then(() => { updateCurrentPage('user_moment') })
   }
 
   render() {
@@ -45,5 +48,5 @@ class BriefUserItem extends Component {
 
 export default connect(
   mapStateToProps,
-  { selectUser, loadMoments, updateMomentsParams }
+  { selectUser, loadMoments, updateMomentsParams, updateCurrentPage }
 )(BriefUserItem)
