@@ -14,6 +14,7 @@ class InputMoments extends Component {
 
     this.handleKeyPress = this.handleKeyPress.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.clearValue = this.clearValue.bind(this)
   }
 
   handleChange(e) {
@@ -28,7 +29,8 @@ class InputMoments extends Component {
   }
 
   clearValue() {
-    this.state.value = ''
+    console.log('clearValue');
+    this.state.value = '!!'
   }
 
   render() {

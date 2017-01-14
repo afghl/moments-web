@@ -35,9 +35,9 @@ export default combineReducers({
       actions.MOMENTS_FAILURE
     ],
     defaultParams: { userId: 1 },
-    more: merge(handlers, {
+    more: {
       [actions.UPDATE_MOMENTS_PARAMS]: defaultHandle
-    })
+    }
   }),
   feeds: paginate({
     types: [
@@ -47,8 +47,8 @@ export default combineReducers({
     ],
     defaultParams: { userId: 1 },
     // TODO: handle last id.
-    more: {
+    more: merge(handlers, {
       [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
-    }
+    })
   })
 })
