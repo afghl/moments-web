@@ -15,11 +15,13 @@ var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
 
+app.set('view engine', 'ejs')
+
 app.use('/images', express.static('images'))
 
 app.use('/page', function(req, res) {
   console.log(req.query);
-  res.sendFile(__dirname + '/index.html')
+  res.render('../index')
 })
 
 
