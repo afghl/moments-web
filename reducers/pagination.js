@@ -2,8 +2,7 @@ import merge from 'lodash/merge'
 import union from 'lodash/union'
 import { combineReducers } from 'redux'
 import paginate from './paginate'
-import * as followersActions from '../actions/followers'
-import * as momentsActions from '../actions/moments'
+import actions from '../actions/actionTypes'
 import * as status from './paginate'
 import { handlers } from './post/moments'
 
@@ -19,24 +18,24 @@ const defaultHandle = (state, action) => {
 export default combineReducers({
   followers: paginate({
     types: [
-      followersActions.FOLLOWERS_REQUEST,
-      followersActions.FOLLOWERS_SUCCESS,
-      followersActions.FOLLOWERS_FAILURE
+      actions.FOLLOWERS_REQUEST,
+      actions.FOLLOWERS_SUCCESS,
+      actions.FOLLOWERS_FAILURE
     ],
     defaultParams: { userId: 1 },
     more: {
-      [followersActions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
+      [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
     }
   }),
   moments: paginate({
     types: [
-      momentsActions.MOMENTS_REQUEST,
-      momentsActions.MOMENTS_SUCCESS,
-      momentsActions.MOMENTS_FAILURE
+      actions.MOMENTS_REQUEST,
+      actions.MOMENTS_SUCCESS,
+      actions.MOMENTS_FAILURE
     ],
     defaultParams: { userId: 1 },
     more: merge(handlers, {
-      [momentsActions.UPDATE_MOMENTS_PARAMS]: defaultHandle
+      [actions.UPDATE_MOMENTS_PARAMS]: defaultHandle
     })
   }),
 })

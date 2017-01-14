@@ -1,5 +1,5 @@
 import merge from 'lodash/merge'
-import * as actions from '../actions/selectUser'
+import actions from '../actions/actionTypes'
 import { combineReducers } from 'redux'
 
 const state = (state = {
