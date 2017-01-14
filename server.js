@@ -20,10 +20,15 @@ app.set('view engine', 'ejs')
 app.use('/images', express.static('images'))
 
 app.use('/page', function(req, res) {
-  console.log(req.query);
-  res.render('../index')
+  var data = parseData(req.query)
+  res.render('../index', { data: data })
 })
 
+var parseData = function(query) {
+  return {
+    currentUserId: query.userId
+  }
+}
 
 app.listen(port, function(error) {
   if (error) {
