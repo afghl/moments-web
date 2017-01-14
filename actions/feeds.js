@@ -1,7 +1,5 @@
 import { CALL_API, GET } from '../middleware/api'
 import Schemas from '../schemas/index'
-import { currentUserId } from '../globalData/index'
-import merge from 'lodash/merge'
 
 export const FEEDS_REQUEST = 'FEEDS_REQUEST'
 export const FEEDS_SUCCESS = 'FEEDS_SUCCESS'
@@ -23,8 +21,7 @@ function fetchFeeds(params) {
 export const loadFeeds = () => {
   return (dispatch, getState) => {
     const { params } = getState().pagination.feeds
-    const userId = currentUserId
 
-    return dispatch(fetchFeeds(merge(params, { userId })))
+    return dispatch(fetchFeeds(params))
   }
 }

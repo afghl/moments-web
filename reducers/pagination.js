@@ -4,6 +4,7 @@ import { combineReducers } from 'redux'
 import paginate from './paginate'
 import actions from '../actions/actionTypes'
 import * as status from './paginate'
+import { currentUserId } from '../globalData/index'
 import { handlers } from './post/moments'
 
 const defaultHandle = (state, action) => {
@@ -23,7 +24,7 @@ export default combineReducers({
       actions.FOLLOWERS_SUCCESS,
       actions.FOLLOWERS_FAILURE
     ],
-    defaultParams: { userId: 1 },
+    defaultParams: { userId: currentUserId },
     more: {
       [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
     }
@@ -34,7 +35,7 @@ export default combineReducers({
       actions.MOMENTS_SUCCESS,
       actions.MOMENTS_FAILURE
     ],
-    defaultParams: { userId: 1 },
+    defaultParams: { userId: currentUserId },
     more: {
       [actions.UPDATE_MOMENTS_PARAMS]: defaultHandle
     }
@@ -45,7 +46,7 @@ export default combineReducers({
       actions.FEEDS_SUCCESS,
       actions.FEEDS_FAILURE
     ],
-    defaultParams: { userId: 1 },
+    defaultParams: { userId: currentUserId },
     // TODO: handle last id.
     more: merge(handlers, {
       [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle

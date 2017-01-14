@@ -1,5 +1,6 @@
 import { CALL_API, POST } from '../middleware/api'
 import Schemas from '../schemas/index'
+import { currentUserId } from '../globalData/index'
 import merge from 'lodash/merge'
 
 export const POST_MOMENTS_REQUEST = 'POST_MOMENTS_REQUEST'
@@ -19,9 +20,9 @@ const sendMoment = (params) => {
 }
 export const postMoment = (params) => {
   return (dispatch, getState) => {
-    // TODO: find correct userId
-    const userId = 2
-    dispatch(sendMoment(merge(params, { userId })))
+    const params = merge(params, { userId: currentUserId })
+    
+    dispatch(sendMoment(params))
 
     return Promise.resolve()
   }
