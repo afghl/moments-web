@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
+var proxy = require('http-proxy-middleware')
 if (process.env.NODE_ENV === 'production') {
   var config = require('./webpack.prod.config')
 } else {
@@ -14,6 +15,7 @@ var port = 3000
 var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
+app.use('/api', proxy({target: 'http://localhost:9090', changeOrigin: true}));
 
 app.set('view engine', 'ejs')
 
