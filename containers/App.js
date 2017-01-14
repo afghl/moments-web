@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import FollowerList from '../containers/FollowerList'
 import MomentList from '../containers/MomentList'
 import InputMoments from '../containers/InputMoments'
+import FeedList from '../containers/FeedList'
 
 export default class App extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class App extends Component {
           <div className={"row"}>
             <div className={"left"}>
               <MomentList />
+              <FeedList />
             </div>
             <div className={"right"}>
               <FollowerList />

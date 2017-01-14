@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import MomentItem from './MomentItem'
 import List from '../components/List'
 import * as status from '../reducers/paginate'
+import { loadFeeds } from '../actions/feeds'
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -10,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
       moments
     },
     pagination: {
-      moments: {
+      feeds: {
         fetchStatus,
         ids,
         failTimes
@@ -19,13 +20,31 @@ const mapStateToProps = (state, ownProps) => {
   } = state
 
   return {
-    moments: ids.map(id => moments[id]),
+    feeds: ids.map(id => moments[id]),
     fetchStatus,
     failTimes
   }
 }
 
-class MomentList extends Component {
+class FeedList extends Component {
+
+  componentWillMount() {
+    if (this.shouldLoad(this.props)) {
+      this.props.loadFeeds()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.shouldLoad(nextProps))
+      this.props.loadFeeds()
+  }
+
+  shouldLoad(props) {
+    const { feeds, fetchStatus, failTimes } = props
+    return feeds.length == 0
+            && fetchStatus == status.PENDING
+            && failTimes < 10
+  }
 
   renderMoment(m) {
     return (
@@ -36,13 +55,13 @@ class MomentList extends Component {
   }
 
   render() {
-    const { renderMoment, props: { moments } } = this
+    const { renderMoment, props: { feeds } } = this
 
     return (
-      <div className={"moments"}>
+      <div className={"feeds"}>
         <List
           renderItem={renderMoment}
-          items={moments}
+          items={feeds}
           className={"moment-list"}
         />
       </div>
@@ -52,5 +71,5 @@ class MomentList extends Component {
 
 export default connect(
   mapStateToProps,
-  { }
-)(MomentList)
+  { loadFeeds }
+)(FeedList)

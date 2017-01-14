@@ -15,6 +15,7 @@ const defaultHandle = (state, action) => {
   })
 }
 
+// TODO: avoid hardcoding userId in defaultParams.
 export default combineReducers({
   followers: paginate({
     types: [
@@ -38,4 +39,16 @@ export default combineReducers({
       [actions.UPDATE_MOMENTS_PARAMS]: defaultHandle
     })
   }),
+  feeds: paginate({
+    types: [
+      actions.FEEDS_REQUEST,
+      actions.FEEDS_SUCCESS,
+      actions.FEEDS_FAILURE
+    ],
+    defaultParams: { userId: 1 },
+    // TODO: handle last id.
+    more: {
+      [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
+    }
+  })
 })
