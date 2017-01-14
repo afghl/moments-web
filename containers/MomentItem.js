@@ -1,18 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 const mapStateToProps = (state, ownProps) => {
-
 }
 
 class MomentItem extends Component {
 
+
   render() {
-    const { body } = this.props.moment
+    moment.locale('zh-cn')
+    const { body, user, createdAt } = this.props.moment
+    const time = moment(createdAt).fromNow()
 
     return (
       <li className="moment">
-        {body}
+        <div className="inner">
+          <p className="userName">{user.name}</p>
+          <p className="body">{body}</p>
+          <p className="timestamp">{time}</p>
+          <div className="comments">点赞和评论区域</div>
+        </div>
+        <div className="border"></div>
       </li>
     )
   }

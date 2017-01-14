@@ -1,0 +1,35 @@
+.moment-list {
+  margin-top: 20px;
+
+  .moment {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .inner {
+    }
+
+    .body {
+      font-size: 16px;
+    }
+
+    .timestamp {
+      font-size: 12px;
+    }
+
+    .comments {
+      background: rgb(250, 250, 250);
+      padding: 10px;
+      border-radius: 10px;
+      min-height: 40px;
+    }
+  }
+
+  .border {
+    height: 1px;
+    width: 80%;
+    background: #e6e6e6;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+}
