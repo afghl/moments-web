@@ -10,34 +10,24 @@ class InputMoments extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {value: ''}
-
     this.handleKeyPress = this.handleKeyPress.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.clearValue = this.clearValue.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState({value: e.target.value})
   }
 
   handleKeyPress(target) {
-    if(target.charCode == 13) {
-      const body = this.state.value
-      this.props.postMoment({ body }).then(this.clearValue)
+    if (target.charCode == 13) {
+      this.props.postMoment({
+        body: this.refs.text.value
+      }).then(() => {
+        this.refs.text.value = ''
+      })
     }
-  }
-
-  clearValue() {
-    console.log('clearValue');
-    this.state.value = '!!'
   }
 
   render() {
     return (
       <div id="input-moments">
         <div className="input-moments-inner">
-          <textarea value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}>
+          <textarea ref="text" onKeyPress={this.handleKeyPress}>
           </textarea>
         </div>
       </div>
