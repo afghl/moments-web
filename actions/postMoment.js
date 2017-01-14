@@ -18,10 +18,12 @@ const sendMoment = (params) => {
     }
   }
 }
+
 export const postMoment = (params) => {
+
   return (dispatch, getState) => {
-    const params = merge(params, { userId: currentUserId })
-    
+    params = merge(params, { userId: currentUserId })
+
     dispatch(sendMoment(params))
 
     return Promise.resolve()
