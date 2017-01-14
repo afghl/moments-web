@@ -6,7 +6,7 @@ import { API_ROOT } from '../api'
 
 export function post(endpoint, params, schema) {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
-  console.log(JSON.stringify(params));
+
   return fetch(fullUrl, {
     body: JSON.stringify(params),
     headers: {

@@ -5,6 +5,7 @@ import paginate from './paginate'
 import * as followersActions from '../actions/followers'
 import * as momentsActions from '../actions/moments'
 import * as status from './paginate'
+import { handlers } from './post/moments'
 
 const defaultHandle = (state, action) => {
   return Object.assign({}, state, {
@@ -20,22 +21,22 @@ export default combineReducers({
     types: [
       followersActions.FOLLOWERS_REQUEST,
       followersActions.FOLLOWERS_SUCCESS,
-      followersActions.FOLLOWERS_FAILURE,
+      followersActions.FOLLOWERS_FAILURE
     ],
     defaultParams: { userId: 1 },
     more: {
-      [followersActions.UPDATE_SHOTS_PARAMS]: defaultHandle
+      [followersActions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
     }
   }),
   moments: paginate({
     types: [
       momentsActions.MOMENTS_REQUEST,
       momentsActions.MOMENTS_SUCCESS,
-      momentsActions.MOMENTS_FAILURE,
+      momentsActions.MOMENTS_FAILURE
     ],
     defaultParams: { userId: 1 },
-    more: {
+    more: merge(handlers, {
       [momentsActions.UPDATE_MOMENTS_PARAMS]: defaultHandle
-    }
+    })
   }),
 })

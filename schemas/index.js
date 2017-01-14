@@ -3,7 +3,7 @@ import { Schema, arrayOf, normalize } from 'normalizr'
 const userSchema = new Schema('users', { idAttribute: 'id' })
 const momentSchema = new Schema('moments', { idAttribute: 'id' })
 
-// userSchema.define({ shots: arrayOf(shotSchema)})
+momentSchema.define({ user: arrayOf(userSchema)})
 
 // Schemas for Moments API responses.
 export default {
