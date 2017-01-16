@@ -4,6 +4,8 @@ import { loadFollowers } from '../actions/followers'
 import List from '../components/List'
 import BriefUserItem from './BriefUserItem'
 import * as status from '../reducers/paginate'
+import { currentUserId } from '../globalData/index'
+import pull from 'lodash/pull'
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -18,6 +20,8 @@ const mapStateToProps = (state, ownProps) => {
       }
     }
   } = state
+
+  pull(ids, currentUserId)
 
   return {
     followers: ids.map(id => users[id]),

@@ -1,1 +1,1 @@
-export const currentUserId = window.bootData.currentUserId
+export const currentUserId = parseInt(window.bootData.currentUserId)

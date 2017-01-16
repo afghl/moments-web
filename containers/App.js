@@ -5,7 +5,9 @@ import FollowerList from '../containers/FollowerList'
 import MomentList from '../containers/MomentList'
 import InputMoments from '../containers/InputMoments'
 import FeedList from '../containers/FeedList'
+import MyList from '../containers/MyList'
 import { connect } from 'react-redux'
+import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
   const { current } = state.page.state
@@ -33,6 +35,7 @@ class App extends Component {
               {this.list()}
             </div>
             <div className={"right"}>
+              <MyList />
               <FollowerList />
             </div>
             <InputMoments />
