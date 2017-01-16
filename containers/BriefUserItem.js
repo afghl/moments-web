@@ -32,7 +32,7 @@ class BriefUserItem extends Component {
   }
 
   render() {
-    const { user: { id, avatar, name }, selectUserId } = this.props
+    const { user: { id, avatar, name }, selectUserId, title } = this.props
     const highLight = id == selectUserId ? 'high-light' : ''
     const className = `brief-user-item ${highLight}`
 
@@ -40,7 +40,7 @@ class BriefUserItem extends Component {
       <li className={className} onClick={this.selectItem}>
         <div className="avatar"><img src={avatar}/></div>
 
-        <p className="name">{name}</p>
+        <p className="name">{title || name}</p>
       </li>
     )
   }
