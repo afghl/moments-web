@@ -11,7 +11,7 @@ function fetchFollowers(params) {
     [CALL_API]: {
       method: GET,
       types: [ FOLLOWERS_REQUEST, FOLLOWERS_SUCCESS, FOLLOWERS_FAILURE ],
-      endpoint: 'followers',
+      endpoint: `users/${params.userId}/followers`,
       schema: Schemas.USER_ARRAY,
       params: params
     }
