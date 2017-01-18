@@ -3,17 +3,24 @@ import { connect } from 'react-redux'
 import { selectUser } from '../actions/page'
 import { loadMoments, updateMomentsParams } from '../actions/moments'
 import { updateCurrentPage } from '../actions/page'
+import includes from 'lodash/includes'
 
 const mapStateToProps = (state, ownProps) => {
   const { selectUserId } = state.page.state
+  const { ids } = state.pagination.followers
 
-  return { selectUserId }
+  return {
+    selectUserId,
+    followerIds: ids
+  }
 }
 
 class BriefUserItem extends Component {
   constructor(props) {
     super(props)
     this.selectItem = this.selectItem.bind(this)
+    this.renderFollow = this.renderFollow.bind(this)
+    this.onClickFollow = this.onClickFollow.bind(this)
   }
 
   selectItem() {
@@ -31,6 +38,21 @@ class BriefUserItem extends Component {
       .then(() => { updateCurrentPage('user_moment') })
   }
 
+  renderFollow() {
+    const { user: { id }, followerIds } = this.props
+    const isFollowing = includes(followerIds, id)
+    const className = isFollowing ? 'follow-span follow' : 'follow-span unfollow'
+    const text = isFollowing ? '取关' : '关注'
+
+    return (
+      <span className={className} onClick={this.onClickFollow}>{text}</ span>
+    )
+  }
+
+  onClickFollow() {
+
+  }
+
   render() {
     const { user: { id, avatar, name }, selectUserId, title } = this.props
     const highLight = id == selectUserId ? 'high-light' : ''
@@ -38,6 +60,7 @@ class BriefUserItem extends Component {
 
     return (
       <li className={className} onClick={this.selectItem}>
+        { this.renderFollow() }
         <div className="avatar"><img src={avatar}/></div>
 
         <p className="name">{title || name}</p>
