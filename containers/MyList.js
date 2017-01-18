@@ -29,7 +29,7 @@ class MyList extends Component {
 
   renderUser(user) {
     return (
-      <BriefUserItem user={user} title={"moments"} />
+      <BriefUserItem user={user} />
     )
   }
 

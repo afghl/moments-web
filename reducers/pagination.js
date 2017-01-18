@@ -29,6 +29,17 @@ export default combineReducers({
       [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
     }
   }),
+  users: paginate({
+    types: [
+      actions.USERS_REQUEST,
+      actions.USERS_SUCCESS,
+      actions.USERS_FAILURE
+    ],
+    defaultParams: {},
+    more: {
+      [actions.UPDATE_USERS_PARAMS]: defaultHandle
+    }
+  }),
   moments: paginate({
     types: [
       actions.MOMENTS_REQUEST,

@@ -6,6 +6,7 @@ import MomentList from '../containers/MomentList'
 import InputMoments from '../containers/InputMoments'
 import FeedList from '../containers/FeedList'
 import MyList from '../containers/MyList'
+import UserList from '../containers/UserList'
 import { connect } from 'react-redux'
 import { currentUserId } from '../globalData/index'
 
@@ -35,6 +36,7 @@ class App extends Component {
               {this.list()}
             </div>
             <div className={"right"}>
+              <UserList />
               <MyList />
               <FollowerList />
             </div>
