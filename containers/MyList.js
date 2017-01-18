@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import BriefUserItem from './BriefUserItem'
 import * as status from '../reducers/paginate'
 import { currentUserId } from '../globalData/index'
-import { updateCurrentPage } from '../actions/page'
+import { updateCurrentPage, selectUser } from '../actions/page'
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -47,7 +47,11 @@ class MyList extends Component {
   }
 
   selectFeed() {
-    this.props.updateCurrentPage('feeds')
+    const { updateCurrentPage, selectUser } = this.props
+    updateCurrentPage('feeds').then(() => {
+      // select none user.
+      selectUser(-1)
+    })
   }
 
   render() {
@@ -74,5 +78,5 @@ class MyList extends Component {
 
 export default connect(
   mapStateToProps,
-  { updateCurrentPage }
+  { updateCurrentPage, selectUser }
 )(MyList)
