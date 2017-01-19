@@ -50,11 +50,19 @@ class BriefUserItem extends Component {
 
   isFollowing() {
     const { user: { id }, followerIds } = this.props
-    includes(followerIds, id)
+    return includes(followerIds, id)
   }
 
-  onClickFollow() {
-    
+  onClickFollow(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const { user: { id }, follow } = this.props
+    const type = this.isFollowing() ? 'unfollow' : 'follow'
+
+    follow({type, followerId: id}).then(() => {
+      console.log('i should modify trigger an action to modify follower list');
+    })
   }
 
   render() {

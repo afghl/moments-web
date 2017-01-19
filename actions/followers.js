@@ -1,5 +1,7 @@
 import { CALL_API, GET, POST } from '../middleware/api'
 import Schemas from '../schemas/index'
+import merge from 'lodash/merge'
+import { currentUserId } from '../globalData/index'
 
 export const FOLLOWERS_REQUEST = 'FOLLOWERS_REQUEST'
 export const FOLLOWERS_SUCCESS = 'FOLLOWERS_SUCCESS'
@@ -35,15 +37,17 @@ const postFollow = (params) => {
     [CALL_API]: {
       method: POST,
       types: [ FOLLOWS_REQUEST, FOLLOWS_SUCCESS, FOLLOWS_FAILURE ],
-      endpoint: `users/${params.userId}/moments`,
+      endpoint: `users/${params.currentUserId}/followers`,
       params: params
     }
   }
 }
 
-export const follow = (followerId) => {
+// can be follow / unfollow
+export const follow = (params) => {
   return (dispatch, getState) => {
-    params = merge(params, { followerId })
+    params = merge(params, { currentUserId })
+    console.log(params);
     dispatch(postFollow(params))
 
     return Promise.resolve()

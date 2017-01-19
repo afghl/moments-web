@@ -28,6 +28,7 @@ class MyList extends Component {
   }
 
   renderUser(user) {
+    if (typeof user === 'undefined') return null
     return (
       <BriefUserItem user={user} />
     )
@@ -60,7 +61,6 @@ class MyList extends Component {
       props: { user }
     } = this
     // return empty unless user present
-    if (typeof user === 'undefined') return null
 
     return (
       <div className={"followers"}>

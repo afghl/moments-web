@@ -8,6 +8,6 @@ const handlePostMomentSuccess = (state, action) => {
   })
 }
 
-export const postMomenthandlers = {
+export const postMomentHandlers = {
   [action.POST_MOMENTS_SUCCESS]: handlePostMomentSuccess
 }
