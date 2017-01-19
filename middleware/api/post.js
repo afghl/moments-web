@@ -20,6 +20,10 @@ export function post(endpoint, params, schema) {
       if (!response.ok) {
         return Promise.reject(json)
       }
+      // when schema is not defined, no response is expected.
+      if (typeof schema == 'undefined') {
+        return {}
+      }
 
       const camelizedJson = camelizeKeys(json)
       const flat = normalize(camelizedJson.items, schema)

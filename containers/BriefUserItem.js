@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { selectUser } from '../actions/page'
 import { loadMoments, updateMomentsParams } from '../actions/moments'
 import { updateCurrentPage } from '../actions/page'
-import { follow } from '../actions/followers'
+import { follow, updateFollowerList } from '../actions/followers'
 import includes from 'lodash/includes'
 
 const mapStateToProps = (state, ownProps) => {
@@ -53,15 +53,24 @@ class BriefUserItem extends Component {
     return includes(followerIds, id)
   }
 
+  // TODO: should probably extract to a single container.
   onClickFollow(e) {
     e.preventDefault();
     e.stopPropagation();
 
-    const { user: { id }, follow } = this.props
+    const {
+      user: { id },
+      follow,
+      updateFollowerList
+    } = this.props
+
     const type = this.isFollowing() ? 'unfollow' : 'follow'
 
     follow({type, followerId: id}).then(() => {
-      console.log('i should modify trigger an action to modify follower list');
+      updateFollowerList({
+        userId: id,
+        action: type
+      })
     })
   }
 
@@ -87,6 +96,7 @@ export default connect(
     loadMoments,
     updateMomentsParams,
     updateCurrentPage,
-    follow
+    follow,
+    updateFollowerList
   }
 )(BriefUserItem)

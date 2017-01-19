@@ -20,12 +20,9 @@ const sendMoment = (params) => {
 }
 
 export const postMoment = (params) => {
-
   return (dispatch, getState) => {
     params = merge(params, { userId: currentUserId })
-
     dispatch(sendMoment(params))
-
     return Promise.resolve()
   }
 }

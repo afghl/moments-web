@@ -6,6 +6,7 @@ import actions from '../actions/actionTypes'
 import * as status from './paginate'
 import { currentUserId } from '../globalData/index'
 import { postMomentHandlers } from './post/moments'
+import { updateListReducers } from './updateFollower'
 
 const defaultHandle = (state, action) => {
   return Object.assign({}, state, {
@@ -25,9 +26,9 @@ export default combineReducers({
       actions.FOLLOWERS_FAILURE
     ],
     defaultParams: { userId: currentUserId },
-    more: {
+    more: merge(updateListReducers, {
       [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
-    }
+    })
   }),
   users: paginate({
     types: [

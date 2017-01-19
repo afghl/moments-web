@@ -7,6 +7,7 @@ export const FOLLOWERS_REQUEST = 'FOLLOWERS_REQUEST'
 export const FOLLOWERS_SUCCESS = 'FOLLOWERS_SUCCESS'
 export const FOLLOWERS_FAILURE = 'FOLLOWERS_FAILURE'
 export const UPDATE_FOLLOWERS_PARAMS = 'UPDATE_FOLLOWERS_PARAMS'
+export const UPDATE_FOLLOWERS_LIST = 'UPDATE_FOLLOWERS_LIST'
 
 function fetchFollowers(params) {
   return {
@@ -47,8 +48,19 @@ const postFollow = (params) => {
 export const follow = (params) => {
   return (dispatch, getState) => {
     params = merge(params, { currentUserId })
-    console.log(params);
     dispatch(postFollow(params))
+
+    return Promise.resolve()
+  }
+}
+
+export const updateFollowerList = (params) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: UPDATE_FOLLOWERS_LIST,
+      userId: params.userId,
+      actionType: params.action
+    })
 
     return Promise.resolve()
   }
