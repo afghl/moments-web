@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { selectUser } from '../actions/page'
 import { loadMoments, updateMomentsParams } from '../actions/moments'
 import { updateCurrentPage } from '../actions/page'
+import { follow } from '../actions/followers'
 import includes from 'lodash/includes'
 
 const mapStateToProps = (state, ownProps) => {
@@ -39,18 +40,21 @@ class BriefUserItem extends Component {
   }
 
   renderFollow() {
-    const { user: { id }, followerIds } = this.props
-    const isFollowing = includes(followerIds, id)
-    const className = isFollowing ? 'follow-span follow' : 'follow-span unfollow'
-    const text = isFollowing ? '取关' : '关注'
+    const className = this.isFollowing() ? 'follow-span follow' : 'follow-span unfollow'
+    const text = this.isFollowing() ? '取关' : '关注'
 
     return (
       <span className={className} onClick={this.onClickFollow}>{text}</ span>
     )
   }
 
-  onClickFollow() {
+  isFollowing() {
+    const { user: { id }, followerIds } = this.props
+    includes(followerIds, id)
+  }
 
+  onClickFollow() {
+    
   }
 
   render() {
@@ -71,5 +75,10 @@ class BriefUserItem extends Component {
 
 export default connect(
   mapStateToProps,
-  { selectUser, loadMoments, updateMomentsParams, updateCurrentPage }
+  { selectUser,
+    loadMoments,
+    updateMomentsParams,
+    updateCurrentPage,
+    follow
+  }
 )(BriefUserItem)

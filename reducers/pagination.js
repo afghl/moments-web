@@ -5,7 +5,7 @@ import paginate from './paginate'
 import actions from '../actions/actionTypes'
 import * as status from './paginate'
 import { currentUserId } from '../globalData/index'
-import { handlers } from './post/moments'
+import { postMomentHandlers } from './post/moments'
 
 const defaultHandle = (state, action) => {
   return Object.assign({}, state, {
@@ -59,7 +59,7 @@ export default combineReducers({
     ],
     defaultParams: { userId: currentUserId },
     // TODO: handle last id.
-    more: merge(handlers, {
+    more: merge(postMomentHandlers, {
       [actions.UPDATE_FOLLOWERS_PARAMS]: defaultHandle
     })
   })
