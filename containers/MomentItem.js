@@ -2,11 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-const mapStateToProps = (state, ownProps) => {
-}
-
 class MomentItem extends Component {
-
 
   render() {
     moment.locale('zh-cn')
@@ -26,10 +22,5 @@ class MomentItem extends Component {
     )
   }
 }
-
-// export default connect(
-//   mapStateToProps,
-//   {  }
-// )(BriefUserItem)
 
 export default MomentItem
