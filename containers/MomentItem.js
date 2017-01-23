@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import CommentList from './CommentList'
 import moment from 'moment'
 
 class MomentItem extends Component {
@@ -15,7 +16,7 @@ class MomentItem extends Component {
           <p className="userName">{user.name}</p>
           <p className="body">{body}</p>
           <p className="timestamp">{time}</p>
-          <div className="comments">点赞和评论区域</div>
+          <CommentList />
         </div>
         <div className="border"></div>
       </li>
