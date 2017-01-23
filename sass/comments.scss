@@ -29,6 +29,7 @@
 
     .other {
       &:before {
+        cursor: auto;
         content: ' 回复 ';
         color: #484848;
       }
