@@ -1,15 +1,45 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ReplyPanel from './ReplyPanel'
+import CommentList from './CommentList'
 import moment from 'moment'
+import { replyMoment } from '../actions/reply'
 
 const mapStateToProps = (state, ownProps) => {
+  const { replyingMomentId } = state.page.state
+
+  return { replyingMomentId }
 }
 
 class MomentItem extends Component {
+  constructor(props) {
+    super(props)
+    this.onClickReply = this.onClickReply.bind(this)
+    this.onClickLike = this.onClickLike.bind(this)
+  }
 
+  onClickReply() {
+    const { replyMoment, moment: { id } } = this.props
+    replyMoment(id)
+  }
+
+  onClickLike() {
+
+  }
+
+  renderReplyPanel() {
+    const { replyingMomentId, moment } = this.props
+    if (replyingMomentId != moment.id) return
+
+    return (
+      <div className="reply">
+        <ReplyPanel moment={moment} />
+      </div>
+    )
+  }
 
   render() {
-    moment.locale('zh-cn')
+    const { onClickReply, onClickLike } = this
     const { body, user, createdAt } = this.props.moment
     const time = moment(createdAt).fromNow()
 
@@ -19,17 +49,20 @@ class MomentItem extends Component {
           <p className="userName">{user.name}</p>
           <p className="body">{body}</p>
           <p className="timestamp">{time}</p>
-          <div className="comments">点赞和评论区域</div>
         </div>
+        <ul className="oprations">
+          <li onClick={onClickReply}><span className="icon icon-reply"></span></li>
+          <li className="like-container" onClick={onClickLike}><span className="icon icon-like"></span></li>
+        </ul>
+        <CommentList moment={this.props.moment}/>
+        { this.renderReplyPanel() }
         <div className="border"></div>
       </li>
     )
   }
 }
 
-// export default connect(
-//   mapStateToProps,
-//   {  }
-// )(BriefUserItem)
-
-export default MomentItem
+export default connect(
+  mapStateToProps,
+  { replyMoment }
+)(MomentItem)

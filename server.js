@@ -20,7 +20,7 @@ app.use('/api', proxy({target: 'http://localhost:9090', changeOrigin: true}));
 app.set('view engine', 'ejs')
 
 app.use('/images', express.static('images'))
-
+app.use('/fonts', express.static('fonts'))
 app.use('/page', function(req, res) {
   var data = parseData(req.query)
   res.render('../index', { data: data })

@@ -1,0 +1,38 @@
+.comments {
+  .comments-likes {
+    margin-top: 5px;
+    margin-left: 5px;
+    .likes-item {
+      float: left;
+      width: 30px;
+      margin-right: 15px;
+      height: 30px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 40px;
+        border: 1px solid #ddd;
+      }
+    }
+    &:after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+
+  .comments-talks {
+    .replier {
+      cursor: pointer;
+      color: blue;
+    }
+
+    .other {
+      &:before {
+        cursor: auto;
+        content: ' 回复 ';
+        color: #484848;
+      }
+    }
+  }
+}

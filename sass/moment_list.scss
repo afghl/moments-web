@@ -22,6 +22,67 @@
       border-radius: 10px;
       min-height: 40px;
     }
+
+    .oprations {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      height: 28px;
+      li {
+        vertical-align: middle;
+        display: inline-block;
+        height: 28px;
+        margin-right: 50px;
+      }
+
+      &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+      }
+    }
+
+    .icon-reply {
+      color: #AAB8C2;
+
+      &:hover {
+        color: #1DA1F2;
+      }
+      &:before {
+        font-size: 28px;
+        cursor: pointer;
+        content: "\f151";
+      }
+    }
+
+    .like-container {
+      position: relative;
+    }
+
+    .icon-like {
+      @include bg('heart.png');
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-position: 0 0;
+      background-size: 1740px;
+      cursor: pointer;
+      animation: fave-heart 1s steps(28);
+    }
+    .icon-like:hover {
+      background-position: -1680px 0;
+      transition: background 1s steps(28);
+    }
+    @keyframes fave-heart {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: -1680px 0;
+      }
+    }
   }
 
   .border {
