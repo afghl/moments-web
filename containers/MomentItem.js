@@ -3,18 +3,24 @@ import { connect } from 'react-redux'
 import ReplyPanel from './ReplyPanel'
 import CommentList from './CommentList'
 import moment from 'moment'
+import { replyMoment } from '../actions/reply'
 
+const mapStateToProps = (state, ownProps) => {
+  const { replyingMomentId } = state.page.state
+
+  return { replyingMomentId }
+}
 
 class MomentItem extends Component {
   constructor(props) {
     super(props)
     this.onClickReply = this.onClickReply.bind(this)
     this.onClickLike = this.onClickLike.bind(this)
-    this.state = { reply: false }
   }
 
   onClickReply() {
-    this.setState({ reply: !this.state.reply })
+    const { replyMoment, moment: { id } } = this.props
+    replyMoment(id)
   }
 
   onClickLike() {
@@ -22,8 +28,8 @@ class MomentItem extends Component {
   }
 
   renderReplyPanel() {
-    if (!this.state.reply) return null
-    const { moment } = this.props
+    const { replyingMomentId, moment } = this.props
+    if (replyingMomentId != moment.id) return
 
     return (
       <div className="reply">
@@ -34,7 +40,6 @@ class MomentItem extends Component {
 
   render() {
     const { onClickReply, onClickLike } = this
-    moment.locale('zh-cn')
     const { body, user, createdAt } = this.props.moment
     const time = moment(createdAt).fromNow()
 
@@ -57,4 +62,7 @@ class MomentItem extends Component {
   }
 }
 
-export default MomentItem
+export default connect(
+  mapStateToProps,
+  { replyMoment }
+)(MomentItem)
