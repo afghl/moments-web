@@ -16,7 +16,7 @@ class MomentItem extends Component {
           <p className="userName">{user.name}</p>
           <p className="body">{body}</p>
           <p className="timestamp">{time}</p>
-          <CommentList />
+          <CommentList moment={this.props.moment}/>
         </div>
         <div className="border"></div>
       </li>
