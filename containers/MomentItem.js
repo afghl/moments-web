@@ -4,6 +4,7 @@ import ReplyPanel from './ReplyPanel'
 import CommentList from './CommentList'
 import moment from 'moment'
 import { replyMoment } from '../actions/reply'
+import { postComment } from '../actions/postComment'
 
 const mapStateToProps = (state, ownProps) => {
   const { replyingMomentId } = state.page.state
@@ -24,7 +25,12 @@ class MomentItem extends Component {
   }
 
   onClickLike() {
+    const { postComment, moment: { id } } = this.props
 
+    postComment({
+      type: 2,
+      momentId: id
+    })
   }
 
   renderReplyPanel() {
@@ -51,8 +57,12 @@ class MomentItem extends Component {
           <p className="timestamp">{time}</p>
         </div>
         <ul className="oprations">
-          <li onClick={onClickReply}><span className="icon icon-reply"></span></li>
-          <li className="like-container" onClick={onClickLike}><span className="icon icon-like"></span></li>
+          <li onClick={onClickReply}>
+            <span className="icon icon-reply"></span>
+          </li>
+          <li className="like-container" onClick={onClickLike}>
+            <span className="icon icon-like"></span>
+          </li>
         </ul>
         <CommentList moment={this.props.moment}/>
         { this.renderReplyPanel() }
@@ -64,5 +74,5 @@ class MomentItem extends Component {
 
 export default connect(
   mapStateToProps,
-  { replyMoment }
+  { replyMoment, postComment }
 )(MomentItem)
