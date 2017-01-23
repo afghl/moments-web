@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as status from '../reducers/paginate'
+import { postComment } from '../actions/postComment'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
@@ -9,18 +10,22 @@ const mapStateToProps = (state, ownProps) => {
 class ReplyPanel extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    this.send = this.send.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   handleKeyPress(target) {
     if (target.charCode == 13) {
-      
+
     }
   }
 
-  handleClick() {
-
+  send() {
+    this.props.postComment({
+      body: this.refs.text.value
+    }).then(() => {
+      this.refs.text.value = ''
+    })
   }
 
   render() {
@@ -30,7 +35,7 @@ class ReplyPanel extends Component {
         </textarea>
 
         <div className="panel-bottom">
-          <button onClick={this.handleClick}>确定</button>
+          <button onClick={this.send}>确定</button>
         </div>
       </div>
     )
@@ -39,5 +44,5 @@ class ReplyPanel extends Component {
 
 export default connect(
   mapStateToProps,
-  { }
+  { postComment }
 )(ReplyPanel)
