@@ -16,13 +16,17 @@ class ReplyPanel extends Component {
 
   handleKeyPress(target) {
     if (target.charCode == 13) {
-
+      this.props.send()
     }
   }
 
   send() {
+    // type, momentId, userId, (otherId), body
     this.props.postComment({
-      body: this.refs.text.value
+      momentId: this.props.moment.id,
+      body: this.refs.text.value,
+      type: 1
+      // TODO: otherId
     }).then(() => {
       this.refs.text.value = ''
     })
