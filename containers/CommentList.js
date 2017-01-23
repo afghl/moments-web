@@ -16,7 +16,18 @@ const mapStateToProps = (state, ownProps) => {
 
 class CommentList extends Component {
 
+  renderLike(like) {
+    const { userAvatar } = like
+
+    return (
+      <li className="likes-item">
+        <img src={userAvatar}/>
+      </li>
+    )
+  }
+
   render() {
+    const { renderLike } = this
     const { likes, talks } = this.props
 
     if (likes.length == 0 && talks.length == 0)
@@ -25,7 +36,15 @@ class CommentList extends Component {
       )
 
     return (
-      <div className="comments">点赞和评论区域</div>
+      <div className="comments">
+        <List
+          renderItem={renderLike}
+          items={likes}
+          className={"comments-likes"}
+        />
+
+
+      </div>
     )
   }
 }

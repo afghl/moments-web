@@ -48,9 +48,7 @@ class FeedList extends Component {
 
   renderMoment(m) {
     return (
-      <MomentItem
-        moment={m}
-      />
+      <MomentItem moment={m} />
     )
   }
 
