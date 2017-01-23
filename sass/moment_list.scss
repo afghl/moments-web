@@ -22,6 +22,12 @@
       border-radius: 10px;
       min-height: 40px;
     }
+
+    .icon-reply {
+      &:before {
+        content: "\f151";
+      }
+    }
   }
 
   .border {
