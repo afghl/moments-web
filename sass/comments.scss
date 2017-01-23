@@ -19,6 +19,19 @@
       display: table;
       clear: both;
     }
+  }
 
+  .comments-talks {
+    .replier {
+      cursor: pointer;
+      color: blue;
+    }
+
+    .other {
+      &:before {
+        content: ' 回复 ';
+        color: #484848;
+      }
+    }
   }
 }

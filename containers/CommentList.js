@@ -26,8 +26,6 @@ class CommentList extends Component {
   }
 
   renderTalk(talk) {
-    console.log(talk);
-
     return (
       <li className="talks-item">
         <p>
@@ -35,7 +33,7 @@ class CommentList extends Component {
             {talk.userName}
           </span>
           { !isEmpty(talk.otherName) ?
-              (<span className="other-replier"> 回复 {talk.otherName} </span>) : ('')
+              (<span className="replier other">{talk.otherName}</span>) : ('')
           }
           ：
           {talk.body}
