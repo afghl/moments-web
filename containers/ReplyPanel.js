@@ -22,9 +22,12 @@ class ReplyPanel extends Component {
 
   send() {
     this.props.postComment({
-      body: this.refs.text.value
+      body: this.refs.text.value,
+      type: 1,
+      momentId: this.props.moment.id
+      // TODO: handle when otherId is present.
     }).then(() => {
-      this.refs.text.value = ''
+      // trigger reply to close panel
     })
   }
 
