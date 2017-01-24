@@ -8,7 +8,7 @@ import isEmpty from 'lodash/isEmpty'
 const mapStateToProps = (state, ownProps) => {
   const entities = state.entities.comments
   const ids = ownProps.moment.comments
-  const comments = ids.map(id => entities[id])
+  const comments = filter(entities, c => c.moment == ownProps.moment.id)
 
   const talks = filter(comments, c => c.type == 1)
   const likes = filter(comments, c => c.type == 2)
