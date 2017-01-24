@@ -9,6 +9,10 @@ momentSchema.define({
   comments: arrayOf(commentSchema)
 })
 
+commentSchema.define({
+  moment: momentSchema
+})
+
 // Schemas for Moments API responses.
 export default {
   USER: userSchema,
