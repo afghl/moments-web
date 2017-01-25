@@ -3,8 +3,12 @@ import merge from 'lodash/merge'
 import union from 'lodash/union'
 
 const deleteCommentReducer = (state, action) => {
-  console.log('deleteCommentReducer');
-  console.log(action);
+  const { params: { commentId } } = action
+  let comment = state.comments[commentId]
+
+  comment = merge({}, comment, { '_delete': true })
+  state.comments[commentId] = comment
+
   return state
 }
 

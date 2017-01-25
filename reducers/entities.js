@@ -26,6 +26,4 @@ export default function entities(state = {
   } else {
     return state
   }
-
-
 }
