@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReplyPanel from './ReplyPanel'
+import filter from 'lodash/filter'
 import CommentList from './CommentList'
 import moment from 'moment'
 import { replyMoment } from '../actions/reply'
@@ -8,8 +9,10 @@ import { postComment } from '../actions/postComment'
 
 const mapStateToProps = (state, ownProps) => {
   const { replyingMomentId } = state.page.state
+  const entities = state.entities.comments
+  const comments = filter(entities, c => c.moment == ownProps.moment.id)
 
-  return { replyingMomentId }
+  return { replyingMomentId, comments }
 }
 
 class MomentItem extends Component {
@@ -64,7 +67,7 @@ class MomentItem extends Component {
             <span className="icon icon-like"></span>
           </li>
         </ul>
-        <CommentList moment={this.props.moment}/>
+        <CommentList comments={this.props.comments}/>
         { this.renderReplyPanel() }
         <div className="border"></div>
       </li>
