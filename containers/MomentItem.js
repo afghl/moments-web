@@ -10,10 +10,9 @@ import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
   const { replyingMomentId } = state.page.state
-  const comments = filter(state.entities.comments, c => {
-    console.log(c._delete);
-    return c.moment == ownProps.moment.id && c._delete != true
-  }
+  const comments = filter(state.entities.comments, c =>
+    c.moment == ownProps.moment.id
+    && c._delete != true
   )
 
   return { replyingMomentId, comments }
