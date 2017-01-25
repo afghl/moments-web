@@ -5,7 +5,7 @@ import filter from 'lodash/filter'
 import CommentList from './CommentList'
 import moment from 'moment'
 import { replyMoment } from '../actions/reply'
-import { postComment } from '../actions/postComment'
+import { postComment, deleteComment } from '../actions/postComment'
 import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
@@ -30,11 +30,19 @@ class MomentItem extends Component {
 
   onClickLike() {
     const { postComment, moment: { id } } = this.props
+    const userLikeComment = this.userLikeComment()
 
-    postComment({
-      type: 2,
-      momentId: id
-    })
+    if (typeof userLikeComment == 'undefined') {
+      postComment({
+        type: 2,
+        momentId: id
+      })
+    } else {
+      deleteComment({
+        momentId: id,
+        commentId: userLikeComment.id
+      })
+    }
   }
 
   renderReplyPanel() {
@@ -49,16 +57,15 @@ class MomentItem extends Component {
   }
 
   // TODO: refactor momentitem and comment list, move operations list into comment list
-  userLikeThisMoment() {
+  userLikeComment() {
     const { comments } = this.props
-    const userLike = filter(comments, c => c.type == 2 && c.userId == currentUserId)
-    return userLike.length > 0
+    return filter(comments, c => c.type == 2 && c.userId == currentUserId)[0]
   }
 
   renderOperations() {
     const { onClickReply, onClickLike } = this
     let likeClasses = 'icon icon-like'
-    if (this.userLikeThisMoment()) likeClasses += ' like'
+    if (this.userLikeComment()) likeClasses += ' like'
 
     return (
       <ul className="operations">
@@ -96,5 +103,5 @@ class MomentItem extends Component {
 
 export default connect(
   mapStateToProps,
-  { replyMoment, postComment }
+  { replyMoment, postComment, deleteComment }
 )(MomentItem)
