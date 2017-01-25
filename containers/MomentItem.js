@@ -6,6 +6,7 @@ import CommentList from './CommentList'
 import moment from 'moment'
 import { replyMoment } from '../actions/reply'
 import { postComment } from '../actions/postComment'
+import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
   const { replyingMomentId } = state.page.state
@@ -47,8 +48,33 @@ class MomentItem extends Component {
     )
   }
 
-  render() {
+  // TODO: refactor momentitem and comment list, move operations list into comment list
+  userLikeThisMoment() {
+    const { comments } = this.props
+    const userLike = filter(comments, c => c.type == 2 && c.userId == currentUserId)
+    return userLike.length > 0
+  }
+
+  renderOperations() {
     const { onClickReply, onClickLike } = this
+    let likeClasses = 'icon icon-like'
+    if (this.userLikeThisMoment()) likeClasses += ' like'
+
+    return (
+      <ul className="operations">
+        <li onClick={onClickReply}>
+          <span className="icon icon-reply"></span>
+        </li>
+        <li className="like-container" onClick={onClickLike}>
+          <span className={likeClasses}>
+          </span>
+        </li>
+      </ul>
+    )
+  }
+
+  render() {
+
     const { body, user, createdAt } = this.props.moment
     const time = moment(createdAt).fromNow()
 
@@ -59,14 +85,7 @@ class MomentItem extends Component {
           <p className="body">{body}</p>
           <p className="timestamp">{time}</p>
         </div>
-        <ul className="oprations">
-          <li onClick={onClickReply}>
-            <span className="icon icon-reply"></span>
-          </li>
-          <li className="like-container" onClick={onClickLike}>
-            <span className="icon icon-like"></span>
-          </li>
-        </ul>
+        { this.renderOperations() }
         <CommentList comments={this.props.comments}/>
         { this.renderReplyPanel() }
         <div className="border"></div>

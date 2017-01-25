@@ -41,7 +41,7 @@ class CommentList extends Component {
     const { comments } = this.props
     const talks = filter(comments, c => c.type == 1)
     const likes = filter(comments, c => c.type == 2)
-    
+
     if (comments.length == 0)
       return (
         <div></div>
