@@ -29,7 +29,7 @@ class MomentItem extends Component {
   }
 
   onClickLike() {
-    const { postComment, moment: { id } } = this.props
+    const { postComment, deleteComment, moment: { id } } = this.props
     const userLikeComment = this.userLikeComment()
 
     if (typeof userLikeComment == 'undefined') {
