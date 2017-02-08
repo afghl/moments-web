@@ -23,7 +23,7 @@
       min-height: 40px;
     }
 
-    .oprations {
+    .operations {
       margin-top: 5px;
       margin-bottom: 10px;
       height: 28px;
@@ -69,11 +69,11 @@
       background-position: 0 0;
       background-size: 1740px;
       cursor: pointer;
-      animation: fave-heart 1s steps(28);
-    }
-    .icon-like:hover {
-      background-position: -1680px 0;
-      transition: background 1s steps(28);
+      // animation: fave-heart 1s steps(28);
+      &.like {
+        background-position: -1680px 0;
+        transition: background 1s steps(28);
+      }
     }
     @keyframes fave-heart {
       0% {

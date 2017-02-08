@@ -6,13 +6,7 @@ import filter from 'lodash/filter'
 import isEmpty from 'lodash/isEmpty'
 
 const mapStateToProps = (state, ownProps) => {
-  const entities = state.entities.comments
-  const ids = ownProps.moment.comments
-  const comments = filter(entities, c => c.moment == ownProps.moment.id)
-
-  const talks = filter(comments, c => c.type == 1)
-  const likes = filter(comments, c => c.type == 2)
-  return { likes, talks }
+  return {}
 }
 
 class CommentList extends Component {
@@ -44,13 +38,14 @@ class CommentList extends Component {
 
   render() {
     const { renderLike, renderTalk } = this
-    const { likes, talks } = this.props
+    const { comments } = this.props
+    const talks = filter(comments, c => c.type == 1)
+    const likes = filter(comments, c => c.type == 2)
 
-    if (likes.length == 0 && talks.length == 0)
+    if (comments.length == 0)
       return (
         <div></div>
       )
-
     return (
       <div className="comments">
         <List
