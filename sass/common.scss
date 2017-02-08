@@ -7,9 +7,9 @@ html {
 }
 
 body {
+  background-color: #f5f8fa;
   margin: 0;
   color: #484848;
-  background-color: #fff;
   // font-family: proxima-nova,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
   font-family: Microsoft YaHei,Pingfang SC,Lantinghei SC,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
   font-size: 14px;
@@ -35,4 +35,11 @@ ol {
 a:link, a:visited {
   color: #0a141a;
   text-decoration: none;
+}
+
+.block {
+  border: 1px solid #e1e8ed;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
 }

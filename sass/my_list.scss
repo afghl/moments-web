@@ -1,0 +1,71 @@
+.my-list {
+  background-color: white;
+  .mylist-header {
+    background-color: #1DA1F2;
+    color: #1DA1F2;
+    height: 95px;
+
+  }
+
+  .mylist-main {
+    .avatar {
+      background-color: #fff;
+      border-radius: 6px;
+      margin: -30px 0 0 8px;
+      padding: 1px;
+      vertical-align: bottom;
+      display: inline-block;
+      img {
+        border-radius: 7px;
+        height: 72px;
+        width: 72px;
+        border: 2px solid #fff;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #fff;
+      }
+    }
+    .name {
+      position: absolute;
+      top: 103px;
+      left: 90px;
+      width: 185px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 25px;
+      margin: -1px 0 -2px 0;
+    }
+  }
+
+  .mylist-operations {
+    margin-left: 32px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    a {
+      float: left;
+      color: #8899a6;
+      margin-right: 20px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 10px;
+      letter-spacing: .02em;
+      overflow: hidden;
+      transition: color .15s ease-in-out;
+    }
+
+    .selected {
+      font-weight: 700;
+      font-size: 15px;
+      color: #0084B4;
+
+    }
+
+    &:after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+
+}
