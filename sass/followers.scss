@@ -1,8 +1,10 @@
 .followers {
-  margin-top: 20px;
-
+  padding: 15px;
+  margin-bottom: 20px;
   h3 {
     margin: 0;
+    font-size: 18px;
+    color: #66757f;
   }
 
   .follower-list {
@@ -18,10 +20,16 @@
   }
 
   .brief-user-item {
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+
+
     .avatar {
       float: left;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
 
       img {
         width: 100%;
@@ -31,16 +39,53 @@
       }
     }
 
-    .name {
+    .content {
+      margin-top: 3px;
       float: left;
+      margin-left: 10px;
+
+      button {
+        font-size: 13px;
+        padding: 3px 11px 5px;
+        color: #292f33;
+        background-color: #e1e8ed;
+        background-image: linear-gradient(#fff,#e1e8ed);
+        border: 1px solid #e1e8ed;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+        border-radius: 4px;
+
+
+      }
+
+      .following {
+        color: #fff;
+        background-color: #1da1f2;
+        background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.05));
+        border-color: #3b88c3;
+        &:hover {
+          background-color: #e81c4f;
+          .following-text {
+            &:before {
+              content: '取消关注';
+            }
+          }
+        }
+        .following-text {
+          &:before {
+            content: '正在关注';
+          }
+        }
+      }
+    }
+
+    .name {
       font-weight: bold;
       margin: 0;
-      margin-left: 10px;
-      margin-top: 10px;
     }
 
     &.high-light {
-      background: rgb(250, 250, 250);
+      // border: 1px solid #A4D9F9;
+      background: #f5f8fa;
     }
   }
 

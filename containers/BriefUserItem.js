@@ -39,12 +39,22 @@ class BriefUserItem extends Component {
   }
 
   renderFollow() {
-    const className = this.isFollowing() ? 'follow-span follow' : 'follow-span unfollow'
-    const text = this.isFollowing() ? '取关' : '关注'
 
-    return (
-      <span className={className} onClick={this.onClickFollow}>{text}</ span>
-    )
+    if (this.isFollowing()) {
+      return (
+        <button type="button" className="following" onClick={this.onClickFollow}>
+          <div className="following-text"></div>
+        </button>
+      )
+    } else {
+      return (
+        <button type="button" onClick={this.onClickFollow}>
+          <div className="follow-text">
+            关注
+          </div>
+        </button>
+      )
+    }
   }
 
   isFollowing() {
@@ -80,10 +90,14 @@ class BriefUserItem extends Component {
 
     return (
       <li className={className} onClick={this.selectItem}>
-        { this.renderFollow() }
-        <div className="avatar"><img src={avatar}/></div>
+        <div className="avatar">
+          <img src={avatar}/>
+        </div>
+        <div className="content">
+          <p className="name">{name}</p>
+          { this.renderFollow() }
+        </div>
 
-        <p className="name">{title || name}</p>
       </li>
     )
   }

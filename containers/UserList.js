@@ -61,9 +61,9 @@ class UserList extends Component {
     const { renderUser, props: { users } } = this;
 
     return (
-      <div className={"followers"}>
+      <div className={"followers block"}>
         <div className={"title"}>
-          <h3>用户列表</h3>
+          <h3>推荐关注</h3>
         </div>
         <List
           renderItem={renderUser}
