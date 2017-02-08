@@ -1,5 +1,5 @@
 #main-section {
-  width: 980px;
+  width: 1190px;
   min-height: 700px;
   min-height: 700px;
   margin: 0 auto;
@@ -8,16 +8,21 @@
   .row {
     width: 100%;
   }
-  
+
   .left {
     float: left;
-    width: 66.66667%;
+    width: 290px;
+  }
+
+  .middle {
+    float: left;
+    width: 590px;
+    margin: 0 10px;
   }
 
   .right {
     float: left;
-    width: 29.16667%;
-    margin-left: 4.16667%;
+    width: 290px;
   }
 
   &:after {

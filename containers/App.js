@@ -30,17 +30,19 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <main id={"main-section"}>
-          <div className={"row"}>
-            <div className={"left"}>
+        <main id="main-section">
+          <div className="row">
+            <div className="left">
+              <MyList />
+            </div>
+            <div className="middle">
+              <InputMoments />
               {this.list()}
             </div>
-            <div className={"right"}>
+            <div className="right">
               <UserList />
-              <MyList />
               <FollowerList />
             </div>
-            <InputMoments />
           </div>
         </main>
       </div>
