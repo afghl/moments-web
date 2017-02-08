@@ -88,16 +88,19 @@ class MomentItem extends Component {
     const time = moment(createdAt).fromNow()
 
     return (
-      <li className="moment">
-        <div className="inner">
-          <p className="userName">{user.name}</p>
-          <p className="body">{body}</p>
-          <p className="timestamp">{time}</p>
+      <li className="moment block">
+        <div className="left">
+          <div className="user-avatar">
+            <img src={user.avatar}/>
+          </div>
         </div>
-        { this.renderOperations() }
-        <CommentList comments={this.props.comments}/>
-        { this.renderReplyPanel() }
-        <div className="border"></div>
+        <div className="inner">
+          <p className="userName">{user.name} <span className="timestamp">{time}</span></p>
+          <p className="body">{body}</p>
+          { this.renderOperations() }
+          <CommentList comments={this.props.comments}/>
+          { this.renderReplyPanel() }
+        </div>
       </li>
     )
   }

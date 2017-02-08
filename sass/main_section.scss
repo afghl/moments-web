@@ -8,23 +8,24 @@
 
   .row {
     width: 100%;
+
+    > .left {
+      float: left;
+      width: 290px;
+    }
+
+    > .middle {
+      float: left;
+      width: 590px;
+      margin: 0 10px;
+    }
+
+    > .right {
+      float: left;
+      width: 290px;
+    }
   }
 
-  .left {
-    float: left;
-    width: 290px;
-  }
-
-  .middle {
-    float: left;
-    width: 590px;
-    margin: 0 10px;
-  }
-
-  .right {
-    float: left;
-    width: 290px;
-  }
 
   &:after {
     content: ' ';
