@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import BriefUserItem from './BriefUserItem'
 import * as status from '../reducers/paginate'
+import { selectUser, updateCurrentPage } from '../actions/page'
+import { loadMoments, updateMomentsParams } from '../actions/moments'
 import { currentUserId } from '../globalData/index'
-import { updateCurrentPage, selectUser } from '../actions/page'
 
 const mapStateToProps = (state, ownProps) => {
   const {
     entities: {
       users
     },
-    page: { state: { current } }
+    page: { state: { current, selectUserId } }
   } = state
 
   return {
     user: users[currentUserId],
-    current
+    current,
+    selectUserId
   }
 }
 
@@ -23,28 +24,23 @@ class MyList extends Component {
 
   constructor(props) {
     super(props)
-    this.renderFeedItem = this.renderFeedItem.bind(this)
     this.selectFeed = this.selectFeed.bind(this)
+    this.selectMe = this.selectMe.bind(this)
   }
 
-  renderUser(user) {
-    if (typeof user === 'undefined') return null
-    return (
-      <BriefUserItem user={user} />
-    )
-  }
+  selectMe() {
+    const {
+      user: { id },
+      selectUser,
+      loadMoments,
+      updateMomentsParams,
+      updateCurrentPage
+     } = this.props
 
-  renderFeedItem() {
-    const highLight = this.props.current == "feeds" ? 'high-light' : ''
-    const className = `brief-user-item ${highLight}`
-
-    return (
-      <li className={className} onClick={this.selectFeed}>
-        <div className="avatar"><img/></div>
-
-        <p className="name">我的 timeline</p>
-      </li>
-    )
+    selectUser(id)
+      .then(updateMomentsParams)
+      .then(loadMoments)
+      .then(() => { updateCurrentPage('user_moment') })
   }
 
   selectFeed() {
@@ -57,20 +53,38 @@ class MyList extends Component {
 
   render() {
     const {
-      renderUser, renderFeedItem,
       props: { user }
     } = this
     // return empty unless user present
+    if (!user) return ( <div></div> )
 
     return (
-      <div className={"followers"}>
-        <div className={"title"}>
-          <h3>我的</h3>
+      <div className={"block my-list"}>
+        <div className="mylist-header">
         </div>
-        <ul className={"follower-list"}>
-          { renderUser(user) }
-          { renderFeedItem() }
-        </ ul>
+        <div className="mylist-main">
+          <div className="mylist-detail">
+            <div className="avatar"><img/></div>
+            <div className="name">{user.name}</div>
+          </div>
+          <div className="mylist-operations">
+            <a
+              href="javascript:;"
+              onClick={this.selectMe}
+              className={this.props.selectUserId == currentUserId ? 'selected' : ''}
+            >
+              moments
+            </a>
+            <a
+              href="javascript:;"
+              onClick={this.selectFeed}
+              className={this.props.current == "feeds" ? 'selected' : ''}
+            >
+              timeline
+            </a>
+          </div>
+        </div>
+
       </div>
     )
   }
@@ -78,5 +92,5 @@ class MyList extends Component {
 
 export default connect(
   mapStateToProps,
-  { updateCurrentPage, selectUser }
+  { updateCurrentPage, selectUser, loadMoments, updateMomentsParams }
 )(MyList)

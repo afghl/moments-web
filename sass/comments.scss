@@ -1,6 +1,9 @@
 .comments {
+  margin-top: 10px;
+  border-top: 1px solid #e1e8ed;
+  padding-top: 10px;
+
   .comments-likes {
-    margin-top: 5px;
     margin-left: 5px;
     .likes-item {
       float: left;
@@ -10,7 +13,7 @@
       img {
         width: 100%;
         height: 100%;
-        border-radius: 40px;
+        border-radius: 4px;
         border: 1px solid #ddd;
       }
     }
@@ -22,9 +25,19 @@
   }
 
   .comments-talks {
+    padding-left: 5px;
+
+    font-size: 13px;
     .replier {
       cursor: pointer;
-      color: blue;
+      color: #0084B4;
+    }
+
+    .talks-item {
+      p {
+        margin: 0;
+        margin-top: 8px;
+      }
     }
 
     .other {

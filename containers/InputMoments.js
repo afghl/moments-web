@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postMoment } from '../actions/postMoment'
 import { updateCurrentPage } from '../actions/page'
+import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  const { entities: { users } } = state
+
+  return {
+    user: users[currentUserId]
+  }
 }
 
 class InputMoments extends Component {
@@ -28,10 +33,16 @@ class InputMoments extends Component {
 
   render() {
     return (
-      <div id="input-moments">
+      <div id="input-moments" className="block">
         <div className="input-moments-inner">
-          <textarea ref="text" onKeyPress={this.handleKeyPress}>
-          </textarea>
+          <div className="avatar">
+            <img/>
+          </div>
+          <div className="inputs">
+            <textarea ref="text" onKeyPress={this.handleKeyPress} placeholder="想说点什么...">
+            </textarea>
+            <a href="javascript:;">发送</a>
+          </div>
         </div>
       </div>
     )

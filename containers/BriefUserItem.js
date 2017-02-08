@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { selectUser } from '../actions/page'
+import { selectUser, updateCurrentPage } from '../actions/page'
 import { loadMoments, updateMomentsParams } from '../actions/moments'
-import { updateCurrentPage } from '../actions/page'
 import { follow, updateFollowerList } from '../actions/followers'
 import includes from 'lodash/includes'
 

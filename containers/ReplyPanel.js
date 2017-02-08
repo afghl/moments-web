@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as status from '../reducers/paginate'
 import { postComment } from '../actions/postComment'
+import { replyMoment } from '../actions/reply'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
@@ -16,7 +17,7 @@ class ReplyPanel extends Component {
 
   handleKeyPress(target) {
     if (target.charCode == 13) {
-
+      this.send()
     }
   }
 
@@ -27,7 +28,7 @@ class ReplyPanel extends Component {
       momentId: this.props.moment.id
       // TODO: handle when otherId is present.
     }).then(() => {
-      // trigger reply to close panel
+      this.props.replyMoment(-1)
     })
   }
 
@@ -36,10 +37,6 @@ class ReplyPanel extends Component {
       <div className='reply-panel'>
         <textarea ref="text" onKeyPress={this.handleKeyPress}>
         </textarea>
-
-        <div className="panel-bottom">
-          <button onClick={this.send}>确定</button>
-        </div>
       </div>
     )
   }
@@ -47,5 +44,5 @@ class ReplyPanel extends Component {
 
 export default connect(
   mapStateToProps,
-  { postComment }
+  { postComment, replyMoment }
 )(ReplyPanel)
