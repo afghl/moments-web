@@ -6,7 +6,6 @@ import { loadMoments, updateMomentsParams } from '../actions/moments'
 import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
-
   const {
     entities: {
       users
