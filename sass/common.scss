@@ -43,3 +43,9 @@ a:link, a:visited {
   border-radius: 6px;
   overflow: hidden;
 }
+
+.clear {
+  display: table;
+  clear: both;
+  height: 0px;
+}

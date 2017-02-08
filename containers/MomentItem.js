@@ -26,8 +26,11 @@ class MomentItem extends Component {
   }
 
   onClickReply() {
-    const { replyMoment, moment: { id } } = this.props
-    replyMoment(id)
+    const { replyingMomentId, replyMoment, moment: { id } } = this.props
+    if (id == replyingMomentId)
+      replyMoment(-1)
+    else
+      replyMoment(id)
   }
 
   onClickLike() {
@@ -65,14 +68,16 @@ class MomentItem extends Component {
   }
 
   renderOperations() {
+    const { replyingMomentId, moment: { id } } = this.props
     const { onClickReply, onClickLike } = this
     let likeClasses = 'icon icon-like'
+    let replyClasses = "icon icon-reply"
     if (this.userLikeComment()) likeClasses += ' like'
-
+    if (id == replyingMomentId) replyClasses += ' focus'
     return (
       <ul className="operations">
         <li onClick={onClickReply}>
-          <span className="icon icon-reply"></span>
+          <span className={replyClasses}></span>
         </li>
         <li className="like-container" onClick={onClickLike}>
           <span className={likeClasses}>
@@ -98,6 +103,9 @@ class MomentItem extends Component {
           <p className="userName">{user.name} <span className="timestamp">{time}</span></p>
           <p className="body">{body}</p>
           { this.renderOperations() }
+        </div>
+        <div className="clear"></div>
+        <div className="bottom">
           <CommentList comments={this.props.comments}/>
           { this.renderReplyPanel() }
         </div>
