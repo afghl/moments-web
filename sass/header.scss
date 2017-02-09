@@ -37,35 +37,19 @@ header {
   line-height: 50px;
 
   .select-user {
-    margin-right: 40px;
+    margin-right: 170px;
   }
 
   .dropdown-box {
     float: right;
     line-height: 50px;
-
+    position: relative;
     .current-user {
       position: relative;
       padding-right: 25px;
       cursor: pointer;
       line-height: 50px;
-      .user-avatar {
-        display: inline-block;
-        width: 35px;
-        height: 35px;
-        vertical-align: middle;
-        border-radius: 4px;
-        overflow: hidden;
-        margin: 10px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
 
-      .user-name {
-        font-weight: bold;
-      }
       &:after {
         content: "";
         width: 0;
@@ -77,6 +61,74 @@ header {
         border-width: 6px 6px 0 6px;
         border-style: solid;
         border-color: #1da1f2 transparent;
+      }
+    }
+    .user-avatar {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      vertical-align: middle;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 10px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .user-name {
+      font-weight: bold;
+    }
+    .dropdown-list {
+      position: absolute;
+      top: 80%;
+      right: -20px;
+      background: white;
+      z-index: 999;
+      border-radius: inherit;
+      border: 1px solid rgba(0,0,0,0.17);
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      font-weight: normal;
+      border-radius: 5px;
+      -webkit-transition: all 0.5s ease-in;
+      -moz-transition: all 0.5s ease-in;
+      -ms-transition: all 0.5s ease-in;
+      -o-transition: all 0.5s ease-in;
+      transition: all 0.5s ease-in;
+      list-style: none;
+      opacity: 1;
+      width: 160px;
+      max-height: 300px;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 100%;
+        right: 13px;
+        border-width: 0 8px 8px 8px;
+        border-style: solid;
+        border-color: rgba(0,0,0,0.1) transparent;
+      }
+
+      &.hidden {
+        opacity: 0;
+      }
+
+      .user-item {
+        text-align: left;
+        padding-left: 10px;
+
+        &:hover {
+          background: #1F98C7;
+          .user-name {
+            color: white;
+          }
+        }
       }
     }
   }
