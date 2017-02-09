@@ -43,20 +43,23 @@
     margin-bottom: 20px;
 
     a {
-      float: left;
+      display: block;
       color: #8899a6;
       margin-right: 20px;
       height: 20px;
       line-height: 20px;
-      font-size: 10px;
+      font-size: 13px;
       letter-spacing: .02em;
       overflow: hidden;
       transition: color .15s ease-in-out;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
     }
 
     .selected {
       font-weight: 700;
-      font-size: 15px;
+      font-size: 16px;
       color: #0084B4;
 
     }

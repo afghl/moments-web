@@ -73,14 +73,14 @@ class MyList extends Component {
               onClick={this.selectMe}
               className={this.props.selectUserId == currentUserId ? 'selected' : ''}
             >
-              moments
+              我的moments
             </a>
             <a
               href="javascript:;"
               onClick={this.selectFeed}
               className={this.props.current == "feeds" ? 'selected' : ''}
             >
-              timeline
+              我的timeline
             </a>
           </div>
         </div>
