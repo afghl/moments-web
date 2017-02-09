@@ -4,9 +4,20 @@ import List from '../components/List'
 import * as status from '../reducers/paginate'
 import filter from 'lodash/filter'
 import isEmpty from 'lodash/isEmpty'
+import includes from 'lodash/includes'
+import union from 'lodash/union'
+import { currentUserId } from '../globalData/index'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  const {
+    pagination: {
+      followers: {
+        ids,
+      }
+    }
+  } = state
+
+  return { followerIds: ids }
 }
 
 class CommentList extends Component {
@@ -36,9 +47,22 @@ class CommentList extends Component {
     )
   }
 
+  filterUnfollowedComments(comments) {
+    let ids = this.props.followerIds
+    ids = union(ids, [currentUserId])
+
+    return filter(comments, c => {
+      const followedReplier = includes(ids, c.userId)
+      const hasOtherReplier = !!c.otherId
+      const followedOther = includes(ids, c.otherId)
+      return followedReplier && (!!hasOtherReplier && followedOther || !hasOtherReplier)
+    })
+  }
+
   render() {
     const { renderLike, renderTalk } = this
-    const { comments } = this.props
+    let { comments } = this.props
+    comments = this.filterUnfollowedComments(comments)
     const talks = filter(comments, c => c.type == 1)
     const likes = filter(comments, c => c.type == 2)
 
