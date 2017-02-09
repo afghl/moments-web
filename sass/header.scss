@@ -1,18 +1,20 @@
 header {
   width: 100%;
-  height: 64px;
+  height: 50px;
   background-color: white;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   text-align: center;
+
+
 }
 
 .main-logo {
   font-family: 'Arima Madurai', cursive;
-  font-size: 40px;
+  font-size: 35px;
   float: left;
   display: block;
-  height: 64px;
-  line-height: 64px;
+  height: 50px;
+  line-height: 50px;
   margin-left: 40px;
   -webkit-transition: opacity 0.2s ease;
   -moz-transition: opacity 0.2s ease;
@@ -26,5 +28,56 @@ header {
   transition: color 0.2s ease;
   &:hover {
     color: #265069;
+  }
+}
+
+.options {
+  float: right;
+  height: 50px;
+  line-height: 50px;
+
+  .select-user {
+    margin-right: 40px;
+  }
+
+  .dropdown-box {
+    float: right;
+    line-height: 50px;
+
+    .current-user {
+      position: relative;
+      padding-right: 25px;
+      cursor: pointer;
+      line-height: 50px;
+      .user-avatar {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .user-name {
+        font-weight: bold;
+      }
+      &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        margin-top: -3px;
+        border-width: 6px 6px 0 6px;
+        border-style: solid;
+        border-color: #1da1f2 transparent;
+      }
+    }
   }
 }
