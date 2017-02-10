@@ -17,18 +17,22 @@ class InputMoments extends Component {
   constructor(props) {
     super(props)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.sendMoment = this.sendMoment.bind(this)
   }
 
   handleKeyPress(target) {
-    if (target.charCode == 13) {
-      this.props.postMoment({
-        body: this.refs.text.value
-      }).then(() => {
-        updateCurrentPage('feeds')
-      }).then(() => {
-        this.refs.text.value = ''
-      })
-    }
+    if (target.charCode == 13)
+      this.sendMoment()
+  }
+
+  sendMoment() {
+    this.props.postMoment({
+      body: this.refs.text.value
+    }).then(() => {
+      updateCurrentPage('feeds')
+    }).then(() => {
+      this.refs.text.value = ''
+    })
   }
 
   render() {
@@ -43,7 +47,7 @@ class InputMoments extends Component {
           <div className="inputs">
             <textarea ref="text" onKeyPress={this.handleKeyPress} placeholder="想说点什么...">
             </textarea>
-            <a href="javascript:;">发送</a>
+            <a href="javascript:;" onClick={this.sendMoment}>发送</a>
           </div>
         </div>
       </div>
