@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 var express = require('express')
 
 var app = new express()
-var port = 3000
+var port = process.env.NODE_ENV === 'production' ? 3001 : 3000
 
 var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
