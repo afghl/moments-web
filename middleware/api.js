@@ -5,7 +5,7 @@ import { post } from './api/post'
 export const CALL_API = Symbol('Call API')
 export const GET = Symbol('Get')
 export const POST = Symbol('Post')
-export const API_ROOT = 'http://localhost:3000/api/'
+export const API_ROOT = '/api/'
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
