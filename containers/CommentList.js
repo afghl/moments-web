@@ -25,7 +25,7 @@ class CommentList extends Component {
   renderLike(like) {
     return (
       <li className="likes-item">
-        <img src={like.userAvatar}/>
+        <img src={like.userAvatar} alt={like.userName}/>
       </li>
     )
   }
@@ -55,7 +55,7 @@ class CommentList extends Component {
       const followedReplier = includes(ids, c.userId)
       const hasOtherReplier = !!c.otherId
       const followedOther = includes(ids, c.otherId)
-      return followedReplier && (!!hasOtherReplier && followedOther || !hasOtherReplier)
+      return followedReplier && (hasOtherReplier && followedOther || !hasOtherReplier)
     })
   }
 

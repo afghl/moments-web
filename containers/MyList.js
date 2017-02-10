@@ -64,7 +64,7 @@ class MyList extends Component {
         </div>
         <div className="mylist-main">
           <div className="mylist-detail">
-            <div className="avatar"><img/></div>
+            <div className="avatar"><img src={user.avatar}/></div>
             <div className="name">{user.name}</div>
           </div>
           <div className="mylist-operations">

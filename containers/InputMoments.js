@@ -32,11 +32,13 @@ class InputMoments extends Component {
   }
 
   render() {
+    const { user } = this.props
+
     return (
       <div id="input-moments" className="block">
         <div className="input-moments-inner">
           <div className="avatar">
-            <img/>
+            <img src={user && user.avatar}/>
           </div>
           <div className="inputs">
             <textarea ref="text" onKeyPress={this.handleKeyPress} placeholder="想说点什么...">
